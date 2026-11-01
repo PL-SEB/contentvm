@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8"><title>VM Tammerfors – innehållsplan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#091B2C;--pn:#10294155;--ln:#1554B8;--lb:#CBE7FF;--kb:#278CF5;--st:#F6F2E8;--lg:#FFE29A;--gg:#F4C44E;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,#1554B8 0%,#0E3470 18%,#0A2240 48%,#091B2C 100%) fixed;color:var(--st);font:400 14px/1.5 Montserrat,Arial,sans-serif}
+h1,h2,h3,b,button,.tag{font-weight:700}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:36px 32px 6px;max-width:1500px;margin:0 auto}
+h1{margin:0;font-size:34px;letter-spacing:-.01em}h1 span{display:block;margin-top:8px;font-size:13px;color:var(--gg);font-weight:400;letter-spacing:.05em}
+button{font-family:inherit;background:var(--gg);color:var(--bg);border:0;border-radius:22px;padding:9px 18px;cursor:pointer;font-size:13px}
+button.alt{background:var(--ln);color:#fff}button.danger{background:#b3402f;color:#fff}
+.wrap{padding:28px 32px 100px;max-width:1500px;margin:0 auto}
+#tb{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;align-items:start}
+.mh{display:inline-block;margin:6px 0 16px;font-size:16px;font-weight:400;border:1.5px solid var(--st);border-radius:30px;padding:7px 22px}.sub{color:var(--lb);opacity:.7;margin:0 0 12px}
+#tb details{background:#ffffff0d;border:1px solid #ffffff1f;border-radius:18px;padding:14px 18px}
+#tb summary{cursor:pointer;font-weight:700;color:var(--lb);padding:4px 0}
+.tool{background:#ffffff12;border:1px solid #ffffff22;border-radius:12px;padding:9px 13px;margin:9px 0;cursor:grab;font-size:13px}
+.tool:hover{background:var(--kb)}
+#dow{display:none}#days{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+#dow span{font-size:11px;color:var(--lb);opacity:.7;padding:6px 8px;text-transform:uppercase;letter-spacing:.06em}
+.cell{min-height:200px;border-radius:20px;padding:16px;border:1px solid #ffffff22;position:relative;overflow:hidden}
+.cell.empty{border:0}
+.dn{display:block;padding-right:26px;font-weight:700;font-size:14px;color:var(--lb)}.day.match .dn{color:var(--gg)}
+.lbl{font-size:10px;color:var(--lb);opacity:.8;margin:4px 0 14px;letter-spacing:.06em;text-transform:uppercase}.day.match .lbl{color:var(--gg);opacity:1}
+.plus{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;padding:0;background:#ffffff14;color:var(--lb);font-size:16px;line-height:1;opacity:0;transition:.15s}
+.day:hover .plus,.day:focus-within .plus{opacity:1}@media(hover:none){.plus{opacity:1}}
+.day .it{padding:7px 10px;font-size:12px;margin:7px 0;border:0;border-left:3px solid var(--kb);background:#ffffff14;border-radius:9px;font-weight:400}
+.more{font-size:10px;color:var(--lb);opacity:.7}
+.ev{position:relative;background:#ffffff10;border:1px solid #ffffff22;border-radius:14px;padding:12px 60px 12px 14px;margin:10px 0;cursor:pointer}.ev:hover{border-color:var(--kb)}.mvb{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:4px}.mvb button{padding:3px 10px;background:#ffffff22;color:var(--st);font-size:11px}
+#dd{width:min(640px,94vw)}
+.day{background:#ffffff0f;cursor:pointer;transition:background .2s}.day:hover{background:#ffffff1c}
+.day.match{border-color:#F4C44Eaa;background:#F4C44E14}
+.day.over,.it.over{outline:2px dashed var(--gg)}
+
+.it{background:#091B2C;border:1px solid var(--ln);border-radius:8px;padding:8px;margin-bottom:7px;cursor:pointer}
+.it b{display:block;font-size:13px}.meta{font-size:11px;color:var(--lb);margin-top:2px}
+.tag{display:inline-block;font-size:10px;border-radius:5px;padding:1px 6px;margin:4px 4px 0 0;background:var(--lg);color:var(--bg)}
+.tag.sp{background:var(--kb);color:#fff}
+dialog{background:linear-gradient(160deg,#12397a,#0a2240);color:var(--st);border:1px solid #ffffff33;border-radius:24px;padding:26px;width:min(520px,94vw);max-height:90vh}
+dialog::backdrop{background:#000a}
+dialog h3{margin:0 0 6px;font-size:18px}dialog p{margin:6px 0}
+label{display:block;margin:8px 0;font-size:12px;color:var(--lb)}
+input,select,textarea{width:100%;margin-top:3px;background:var(--bg);color:var(--st);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.chip{border:1px solid var(--ln);border-radius:14px;padding:2px 9px;font-size:11px;cursor:pointer}
+.chip.on{background:var(--gg);color:var(--bg);border-color:var(--gg)}
+.row{display:flex;gap:8px;justify-content:space-between;margin-top:12px}
+@media(max-width:800px){.wrap{padding:12px}#days{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:560px){#days{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style></head><body>
+<header><h1>VM Tammerfors<span>3–14 dec · innehållsplan för landslaget</span></h1>
+<div><button class="alt" id="bx">Spara / ladda in</button> <button class="danger" id="br">Återställ</button></div></header>
+<div class="wrap"><h2 class="mh">3–14 december 2026</h2><div id="dow"><span>Mån</span><span>Tis</span><span>Ons</span><span>Tors</span><span>Fre</span><span>Lör</span><span>Sön</span></div><section id="days"></section><h2 class="mh" style="margin-top:40px">Format</h2><p class="sub">Klicka för förklaring, eller dra ett format till en dag i kalendern.</p><aside id="tb"></aside></div><dialog id="dd"></dialog>
+<dialog id="dg"></dialog>
+<script>
+const SET={R:"Run and gun (kamera + mygga)",S:"Studio (backdrop)",M:"Mobil"},SP={1:"Blixt (<1 h)",2:"Samma dag",3:"1–3 dagar"};
+const G=["Matchdag","Dagliga serier","Lära känna – supportrar","Lära känna – ledare","Få med hela Sverige","Innebandyhjärtat","Mer än innebandyspelare"];
+const F=[
+["matchrap",0,"Matchrapportering","M",1,"Startelva, inför-match-info, periodpaus-resultat och fulltidsinlägg i ett enhetligt designsystem med mallar."],
+["hl_efter",0,"Highlightspaket efter match","R",2,"Snabbt klippt paket med matchens bästa ögonblick, ut samma kväll."],
+["hl_dagen",0,"Highlightspaket dagen efter","R",3,"Mer genomarbetat paket med extra vinklar och reaktioner, ut dagen efter match."],
+["touch",0,"Sista touchen","R",1,"Spelarna de sista minuterna i omklädningsrummet och på väg ut till planen: nervositet, fokus, förberedelser."],
+["mitt",0,"Mitt i matchen","R",1,"Inblick i omklädningsrummet under periodpausen. Filmas, klipps och publiceras innan nästa period."],
+["mygga",0,"Myggad brolle / myggad sarg","R",2,"Ljuduppta en ledare eller placera mikrofoner vid sargen. Spontana kommentarer och känslor mitt i matchen."],
+["slut",0,"Direkt efter slutsignal","R",1,"Första reaktionerna efter matchen: glädje, frustration, spontana samtal. Kan köras live på Instagram Stories."],
+["tour",1,"Hotel tour","M",2,"En spelare går runt och knackar på lagkamraters hotellrum. Funkar bäst första dagarna, måste ut dag 1–2."],
+["talks",1,"Hotel talks med xx","S",1,"Uppriggad setting hela VM med backdrop och ljus. Snabba synkar och enklare lär känna-lekar. Hög contentnivå, enkelt format, sporadisk publicering."],
+["kaffe",1,"Morgonkaffet med xx","S",1,"Varje morgon ett kaffesnack med en ledare eller spelare om dagen och förväntningarna. Går ut direkt på morgonen."],
+["snabba",1,"5 snabba med","R",2,"Fem snabba frågor, snabba svar. Enkelt att klippa och återanvända med olika spelare."],
+["valkomna",2,"Välkommen till Tammerfors","M",2,"Möta svenska supportrar vid centralstationen eller färjeterminalen med en landslagströja eller välkomstgåva. Karismatiska fans berättar om förväntningarna."],
+["stories",2,"Blågula stories","M",2,"Vilket svenskt VM-guld minns du starkast och varför? Supportrarna delar minnen från landslagets historia."],
+["analys",2,"Blågula analyser","M",1,"Hur går det i dagens match och vem blir avgörande? Supportrarnas förutsägelser inför matcherna."],
+["quiz",2,"Mesta världsmästarna-quiz","M",2,"Kan du Sveriges alla tio VM-guldår? Snabbt quiz där den som prickar alla rätt vinner ett pris."],
+["upplev",2,"Upplev VM med en supporter","M",3,"Följ en blågul supporter genom Tammerfors, från matchuppladdning och arenaliv till möten med finska och andra länders supportrar."],
+["materialare",3,"Vad gör en materialare?","R",3,"Intervju om materialarens funktion under ett VM och om resten av laget bakom laget."],
+["shoutl",3,"Shoutout andra landslag","M",1,"Vilket annat landslag hade du kunnat tänka dig att jobba med? Eller inte?"],
+["vemilag",3,"Vem i laget?","R",2,"Roastning (eller hyllningar) av ledarstaben: ”vem i laget är sämst på att komma i tid?”"],
+["bakom",3,"Bakom mesta världsmästarna","R",3,"Större inblick i ledarstaben genom att lyfta doldisroller som idrottspsykologisk rådgivare och läktarcoach."],
+["shoutk",4,"Shoutout – kända profiler","M",1,"Vilka tre kända personer borde följa oss under VM? Vi taggar profilerna och försöker få dem att haka på."],
+["shoutl2",4,"Shoutout – andra landslag","M",1,"Vilka andra svenska landslag borde följa oss? Följarna nominerar och vi utmanar de mest omnämnda."],
+["kandis",4,"Bjud in en kändis","M",1,"Vilken känd person borde vi bjuda in till en VM-match? Följarna nominerar."],
+["reaktion",4,"Reaktionskedjan","M",2,"Kända profiler och andra idrottare reagerar på spektakulära innebandyklipp. Reaktionerna delas vidare."],
+["minne",5,"Mitt starkaste VM-minne","R",2,"Frågan skickas runt i laget och spelarna delar korta återblickar som knyter dagens landslag till historien."],
+["dromfem",5,"Drömfemman","R",2,"Två till tre spelare tar ut sina drömfemmor genom tiderna. Följarna röstar i kommentarsfältet."],
+["forebild",5,"Min största förebild","R",2,"Vilken innebandyspelare såg du upp till som ung? Spelarna berättar om idoler och inspiration."],
+["aldrig",5,"Matchen jag aldrig glömmer","R",3,"Mest minnesvärda matchen de själva spelat, gärna med bilder eller arkivklipp."],
+["lyssnar",6,"Vad lyssnar du på?","M",1,"Bildserie med naturliga spelarporträtt och låtarna de lyssnar på inför match eller på bussen."],
+["playlist",6,"Landslagets playlist","M",2,"Varje spelare bidrar med en låt till en gemensam Spotify-lista som delas med följarna."],
+["musiken",6,"Vem styr musiken?","S",2,"Uppföljning av spellistan med banter. Vem har bäst musiksmak och vem borde inte få styra i omklädningsrummet?"],
+["watch",6,"Watchlist","M",1,"Vad tittar spelarna på just nu? Serie, YouTube-kanal, anime eller film."],
+["fit",6,"Fitcheck","M",1,"Spelarnas kläder utanför planen. Fotas när de anländer till hotellet eller går till bussen."],
+["hobby",6,"Min hobby","M",2,"Spelarnas största intresse vid sidan av innebandyn, med en bild från när de utövar det."],
+["vaska",6,"I väskan","S",1,"Spelaren plockar fram en personlig sak ur väskan som inte har med innebandy att göra."],
+["matkvitto",6,"Senaste matkvittot","M",1,"Vad äter spelarna helst eller vad beställde de senast? Matvanor och favoriter."],
+["fraga",6,"Fråga mig vad som helst om","S",3,"Spelarna delar något de kan mycket om. Följarna ställer frågor via Instagram Stories."]];
+const FM={};F.forEach(a=>FM[a[0]]={id:a[0],g:a[1],n:a[2],s:a[3],p:a[4],d:a[5]});
+const D=[["d3","Torsdag 3 dec","travel","Nedresa"],["d4","Fredag 4 dec","travel","Nedresa"],["d5","Lör 5 dec","match","Slovakien – Sverige"],["d6","Sön 6 dec","off","Spelledigt"],["d7","Mån 7 dec","match","Sverige – Tjeckien"],["d8","Tis 8 dec","match","Sverige – Tyskland"],["d9","Ons 9 dec","off","Spelledigt"],["d10","Tors 10 dec","off","Spelledigt"],["d11","Fre 11 dec","match","Kvartsfinal"],["d12","Lör 12 dec","match","Semifinal"],["d13","Sön 13 dec","match","Final"],["d14","Mån 14 dec","travel","Hemresa"]];
+const PL=["Thomas Brottman (förbundskapten)","Jon Hedlund","Kalle Bending","Hugo Bertilsson","Emil Hallqvist Johansson","Oskar Hovlund","Daniel Kalentun","Emil Kalentun","Oscar Magnusson Lindholm","Niklas Ramirez","Benjamin Schill","Casper Backby","Linus Holmgren","Hampus Nydenfeldt","Filip Wramdemark","Filip Eriksson","Gabriel Kohonen","Malte Lundmark","Linus Malmström","Albin Sjögren","Emil Ruud","Sakarias Ulriksson","Oskar Weissbach"];
+const $=s=>document.querySelector(s),dg=$("#dg"),dd=$("#dd"),KEY="vm26";
+const e=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mk=(f,t,pl)=>({u:Math.random().toString(36).slice(2,9),f,time:t||"",place:pl||"",s:FM[f].s,p:FM[f].p,pl:[],note:""});
+function plan(){const P={};D.forEach(d=>P[d[0]]=[]);const a=(d,f,t,pl)=>P[d].push(mk(f,t,pl));
+a("d3","tour","Dag 1–2","Hotellet");a("d4","talks","","Hotel talks-rummet");a("d4","playlist","","Hotellet");
+["d5","d6","d7","d8","d9","d10","d11","d12","d13"].forEach(d=>a(d,"kaffe","08:00","Hotellet"));
+["d5","d7","d8","d11","d12","d13"].forEach(d=>{a(d,"matchrap","Match","Arenan");a(d,"hl_efter","Efter match","Arenan");a(d,"touch","Före match","Arenan");a(d,"slut","Efter match","Arenan")});
+["d6","d8","d9","d12","d13","d14"].forEach(d=>a(d,"hl_dagen","Förmiddag","Redigering"));
+a("d6","snabba","","Hotel talks-rummet");a("d6","lyssnar","","Bussen");a("d7","mygga","Under match","Arenan");
+a("d9","materialare","","Arenan");a("d9","fit","","Hotellet");a("d10","minne","","Hotel talks-rummet");a("d10","dromfem","","Hotel talks-rummet");a("d10","shoutk","","Hotellet");
+a("d5","valkomna","Innan match","Centralstationen");a("d8","analys","Innan match","Arenan");return P}
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(x){}if(!S||!S.d4)S=plan();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(x){}};
+function tools(){$("#tb").innerHTML=G.map((g,i)=>`<details open><summary>${g}</summary>${F.filter(f=>f[1]==i).map(f=>`<div class="tool" draggable="true" data-f="${f[0]}">${e(f[2])}</div>`).join("")}<button class="alt addg" data-g="${i}" style="font-size:11px;padding:6px 14px;margin-top:4px">+ Nytt format</button></details>`).join("")}
+const mf=a=>FM[a[0]]={id:a[0],g:a[1],n:a[2],s:a[3],p:a[4],d:a[5]};
+function addF(a){if(!FM[a[0]]){F.push(a);mf(a)}try{localStorage.setItem("vm26f",JSON.stringify(F.filter(f=>f[0].startsWith("c_"))))}catch(x){}}
+try{JSON.parse(localStorage.getItem("vm26f")||"[]").forEach(a=>{if(!FM[a[0]]){F.push(a);mf(a)}})}catch(x){}
+function newF(g){dg.innerHTML=`<h3>Nytt format</h3><p class="meta">${e(G[g])}</p><label>Namn<input id="n1"></label><label>Beskrivning<textarea id="n2" rows="3" placeholder="Vad är idén?"></textarea></label><label>Setup<select id="n3">${opts(SET,"R")}</select></label><label>Produktionstid<select id="n4">${opts(SP,2)}</select></label><div class="row"><button class="alt" id="ec">Avbryt</button><button id="ns">Spara format</button></div>`;
+dg.oninput=null;dg.onchange=null;dg.onclick=ev=>{if(ev.target.id=="ec")dg.close();if(ev.target.id=="ns"){const n=$("#n1").value.trim();if(!n)return;addF(["c_"+Math.random().toString(36).slice(2,8),g,n,$("#n3").value,+$("#n4").value,$("#n2").value||"Eget format."]);tools();dg.close()}};dg.showModal()}
+function days(){let h="";
+for(const d of D){
+const L=S[d[0]],t=d[2];
+h+=`<div class="cell day ${t}" data-d="${d[0]}"><span class="dn">${e(d[1])}</span><button class="plus" title="Lägg till aktivitet">+</button><div class="lbl">${t=="match"?"Matchdag · ":""}${e(d[3])}</div>${L.map(it=>`<div class="it" draggable="true" data-u="${it.u}">${/^\d/.test(it.time)?e(it.time.slice(0,5))+" ":""}${e(FM[it.f].n)}</div>`).join("")}</div>`}
+$("#days").innerHTML=h}
+function detail(d){const x=D.find(y=>y[0]==d),L=S[d];dd.dataset.d=d;
+dd.innerHTML=`<h3>${e(x[1])}</h3><p class="meta">${x[2]=="match"?"Matchdag · ":""}${e(x[3])}</p>${L.length?L.map(it=>`<div class="ev" data-u="${it.u}"><div class="mvb"><button class="mv" data-dir="-1" title="Flytta upp">▲</button><button class="mv" data-dir="1" title="Flytta ned">▼</button></div><b>${e(FM[it.f].n)}</b><div class="meta">⏰ ${e(it.time||"–")} · 📍 ${e(it.place||"–")}</div><span class="tag">${e(SET[it.s])}</span><span class="tag sp">${SP[it.p]}</span>${it.pl.length?`<div class="meta">👤 ${it.pl.map(n=>e(n.split(" (")[0])).join(", ")}</div>`:""}${it.note?`<div class="meta">${e(it.note)}</div>`:""}</div>`).join(""):`<p class="meta">Inget planerat än.</p>`}<div class="row"><button class="alt" id="dc">Stäng</button><button id="dp">+ Lägg till aktivitet</button></div>`;
+dd.onclick=ev=>{const m=ev.target.closest(".mv");if(m){const u=m.closest(".ev").dataset.u,L=S[d],i=L.findIndex(x=>x.u==u),j=i+ +m.dataset.dir;if(j>=0&&j<L.length){[L[i],L[j]]=[L[j],L[i]];save();days();detail(d)}return}const t=ev.target.closest(".ev");if(t)return edit(t.dataset.u);if(ev.target.id=="dc")dd.close();if(ev.target.id=="dp")pick(d)};if(!dd.open)dd.showModal()}
+function pick(d){dg.innerHTML=`<h3>Lägg till aktivitet</h3><p class="meta">${e(D.find(x=>x[0]==d)[1])}</p><label>Format<select id="p1">${G.map((g,i)=>`<optgroup label="${g}">${F.filter(f=>f[1]==i).map(f=>`<option value="${f[0]}">${e(f[2])}</option>`).join("")}</optgroup>`).join("")}</select></label><p id="p2"></p><div class="row"><button class="alt" id="ec">Avbryt</button><button id="pa">Lägg till</button></div>`;
+const sh=()=>$("#p2").textContent=FM[$("#p1").value].d;sh();dg.oninput=null;dg.onchange=ev=>{if(ev.target.id=="p1")sh()};
+dg.onclick=ev=>{if(ev.target.id=="ec")dg.close();if(ev.target.id=="pa"){const it=mk($("#p1").value);S[d].push(it);save();days();dg.close();edit(it.u)}};dg.showModal()}
+dg.addEventListener("close",()=>{if(dd.open)detail(dd.dataset.d)});
+function _old(){$("#days").innerHTML=D.map(d=>`<div class="day ${d[2]}" data-d="${d[0]}"><h2>${d[1]}</h2><small>${d[2]=="match"?"MATCHDAG · ":d[2]=="off"?"SPELLEDIGT · ":""}${e(d[3])} · ${S[d[0]].length} st</small>${S[d[0]].map(it=>`<div class="it" draggable="true" data-u="${it.u}"><b>${e(FM[it.f].n)}</b><div class="meta">${it.time?"⏰ "+e(it.time):"⏰ –"} · ${it.place?"📍 "+e(it.place):"📍 –"}</div><span class="tag">${e(SET[it.s].split(" (")[0])}</span><span class="tag sp">${SP[it.p]}</span>${it.pl.length?`<div class="meta">👤 ${it.pl.map(n=>e(n.split(" (")[0])).join(", ")}</div>`:""}</div>`).join("")}</div>`).join("")}
+const opts=(o,sel)=>Object.entries(o).map(([k,v])=>`<option value="${k}"${k==sel?" selected":""}>${e(v)}</option>`).join("");
+function find(u){for(const d in S){const i=S[d].findIndex(x=>x.u==u);if(i>-1)return[d,i]}}
+function edit(u){const[d,i]=find(u),it=S[d][i];
+dg.innerHTML=`<h3>${e(FM[it.f].n)}</h3><p>${e(FM[it.f].d)}</p><label>Tidpunkt<input id="e1" value="${e(it.time)}" placeholder="t.ex. 08:00 eller Efter match"></label><label>Plats<input id="e2" value="${e(it.place)}"></label><label>Setup<select id="e3">${opts(SET,it.s)}</select></label><label>Produktionstid<select id="e4">${opts(SP,it.p)}</select></label><div class="meta">Spelare / ledare</div><div class="chips">${PL.map(n=>`<span class="chip${it.pl.includes(n)?" on":""}">${e(n)}</span>`).join("")}</div><label>Anteckning<textarea id="e5" rows="2">${e(it.note)}</textarea></label><div class="row"><button class="danger" id="ed">Ta bort</button><button id="ec">Klar</button></div>`;
+const up=()=>{it.time=$("#e1").value;it.place=$("#e2").value;it.s=$("#e3").value;it.p=+$("#e4").value;it.note=$("#e5").value;save();days()};
+dg.oninput=up;dg.onchange=up;
+dg.onclick=ev=>{const t=ev.target;if(t.classList.contains("chip")){const n=t.textContent;it.pl=it.pl.includes(n)?it.pl.filter(x=>x!=n):[...it.pl,n];t.classList.toggle("on");up()}
+if(t.id=="ec")dg.close();if(t.id=="ed"){S[d].splice(i,1);save();days();dg.close()}};dg.showModal()}
+function info(f){const m=FM[f];dg.innerHTML=`<h3>${e(m.n)}</h3><p>${e(m.d)}</p><span class="tag">${e(SET[m.s])}</span><span class="tag sp">${SP[m.p]}</span><label>Lägg till på dag<select id="i1">${D.map(d=>`<option value="${d[0]}">${e(d[1]+" · "+d[3])}</option>`).join("")}</select></label><div class="row"><button class="alt" id="ec">Stäng</button><button id="ia">Lägg till</button></div>`;
+dg.oninput=null;dg.onchange=null;dg.onclick=ev=>{if(ev.target.id=="ec")dg.close();if(ev.target.id=="ia"){S[$("#i1").value].push(mk(f));save();days();dg.close()}};dg.showModal()}
+$("#tb").onclick=ev=>{const b=ev.target.closest(".addg");if(b)return newF(+b.dataset.g);const t=ev.target.closest(".tool");if(t)info(t.dataset.f)};
+$("#days").onclick=ev=>{const c=ev.target.closest(".day");if(!c)return;if(ev.target.closest(".plus"))pick(c.dataset.d);else detail(c.dataset.d)};
+document.addEventListener("dragstart",ev=>{const t=ev.target.closest&&ev.target.closest(".tool,.it");if(!t)return;ev.dataTransfer.setData("text/plain",JSON.stringify(t.dataset.f?{t:"tool",f:t.dataset.f}:{t:"item",u:t.dataset.u}));ev.dataTransfer.effectAllowed="copyMove"});
+document.addEventListener("dragover",ev=>{const t=ev.target.closest&&ev.target.closest(".it,.day");if(!t)return;ev.preventDefault();document.querySelectorAll(".over").forEach(x=>x.classList.remove("over"));t.classList.add("over")});
+document.addEventListener("dragend",()=>document.querySelectorAll(".over").forEach(x=>x.classList.remove("over")));
+document.addEventListener("drop",ev=>{const day=ev.target.closest&&ev.target.closest(".day");if(!day)return;ev.preventDefault();document.querySelectorAll(".over").forEach(x=>x.classList.remove("over"));
+let p;try{p=JSON.parse(ev.dataTransfer.getData("text/plain"))}catch(x){return}
+const tgt=ev.target.closest(".it"),d=day.dataset.d,ti=tgt?S[d].findIndex(x=>x.u==tgt.dataset.u):-1;
+if(p.t=="tool"){if(ti>-1){const o=S[d][ti],n=mk(p.f,o.time,o.place);n.pl=o.pl;S[d][ti]=n}else S[d].push(mk(p.f))}
+else{const[fd,fi]=find(p.u),it=S[fd].splice(fi,1)[0];const j=tgt?S[d].findIndex(x=>x.u==tgt.dataset.u):-1;j>-1?S[d].splice(j,0,it):S[d].push(it)}
+save();days()});
+$("#br").onclick=()=>{if(confirm("Återställa till grundplanen? Dina ändringar försvinner.")){S=plan();save();days()}};
+$("#bx").onclick=()=>{dg.innerHTML=`<h3>Spara / ladda in</h3><p>Kopiera texten och spara den i ett dokument. Klistra in en sparad plan och tryck Ladda in för att återställa den.</p><textarea id="x1" rows="9">${e(JSON.stringify({...S,_f:F.filter(f=>f[0].startsWith("c_"))}))}</textarea><div class="row"><button class="alt" id="ec">Stäng</button><button id="xc" class="alt">Kopiera</button><button id="xl">Ladda in</button></div>`;dg.oninput=null;dg.onchange=null;
+dg.onclick=ev=>{const id=ev.target.id;if(id=="ec")dg.close();if(id=="xc"){$("#x1").select();try{document.execCommand("copy")}catch(x){}}
+if(id=="xl"){try{const n=JSON.parse($("#x1").value);if(!n.d4)throw 0;(n._f||[]).forEach(addF);delete n._f;S=n;save();tools();days();dg.close()}catch(x){alert("Texten kunde inte läsas in.")}}};dg.showModal()};
+tools();days();
+</script></body></html>
